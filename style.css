@@ -1,0 +1,229 @@
+*{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root{
+            --primary-color: #1b3444;
+            --secondary-color: #2c5282;
+            --accent-color: #4a90e2;
+            --text-color: #61807e;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #61807e;
+            background-color: #f4f7fb;
+            background-color: var(--primary-color);
+            background-color: #010101;
+            
+        }
+        .header-container{
+            border-bottom: 1px solid var(--secondary-color) ;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* .nav-brand{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+        .project-name{
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+        .nav-menu{
+            display: flex;
+            /* justify-content: space-around; */
+            align-items: center;
+            /* margin: 20px; */
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+        }
+        /* .nav-item{
+            
+            list-style: none;
+        } */
+        .nav-link{
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            text-transform: capitalize;
+            position: relative;
+        }
+        .nav-link:hover{
+            color: var(--accent-color);
+        }
+        .nav-link::after{
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            left: 0;
+            bottom: -5px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after{
+            width: 100%;
+        }
+
+        /* hero section */
+        
+        .hero {
+            position: relative;
+            /* background-image: url('images/villlage-banner.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center; */
+            min-height: 80vh; /* adjust height */
+            display: flex;
+            align-items: center;
+            color: #fff;
+            object-fit: cover;
+            overflow: hidden;
+            padding-top: 50px;
+        }
+        .hero-container{
+           text-align: center;
+           width: 100%;
+           margin: 40px;
+        }
+        .hero-container .title{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .hero-container .description{
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 60px;
+        }
+        .hero-container .primary-btn{
+            padding: 8px 24px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .feature-points{
+            margin-top: 40px;
+        }
+        .feature-points p{
+            font-size: 1rem;
+            margin-bottom: 10px;
+
+        }
+        .feature-card{
+            background-color: white;
+            padding-top: 40px;
+
+        }
+        .card-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        
+
+        /*  */
+    .card {
+    /* width: 300px;  */
+    margin: 20px auto; 
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+    font-family: Arial, sans-serif; 
+    transition: transform 0.3s ease; 
+    padding: 15px 50px;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling */
+.card h3 {
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    color: #333333; /* Dark text */
+    background-color: #f8f8f8; 
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+/* Image container */
+.card-img {
+    width: 100%;
+    height: 200px; 
+    overflow: hidden; 
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fit image without distortion */
+    display: block; /* Remove bottom gap */
+}
+
+
+.card p {
+    padding: 10px 15px;
+    font-size: 0.95em;
+    color: #555555; 
+    line-height: 1.5; 
+}
+
+
+.card-btns {
+    display: flex;
+    justify-content: space-around; 
+    padding: 15px;
+    background-color: #f8f8f8; 
+    border-top: 1px solid #e0e0e0; 
+}
+
+.card-btns a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    /* border-radius: 6px;  */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+.learn-btn {
+    background-color: #007bff; 
+    background-color: #010101;
+    color: #ffffff;
+}
+
+.learn-btn:hover {
+    background-color: #0056b3; 
+}
+
+.sort-btn {
+    background-color: #28a745; 
+    background-color: #010101;
+    color: #ffffff;
+}
+
+.sort-btn:hover {
+    background-color: #218838; 
+}
+
+
+@media (max-width: 400px) {
+    .card {
+        width: 90%; /* Full width on mobile */
+    }
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bubble-sort</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+       
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        background-color: black;
+        height: 100vh;
+        padding: 2rem;
+        width: 100%;
+        gap: 30px;
+        color: white;
+    }
+        
+        .left-small-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+}
+
+        /* .right-wide-container{
+            display: grid;
+            grid-template-rows: 60px 1fr 50px;
+            gap: 30px;
+        } */
+         .right-wide-container {
+             display: grid;
+            grid-template-rows: 200px 1fr 100px;
+            gap: 30px;
+    background: rgba(255,255,255,0.05);
+    /* border-radius: 5px; */
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+
+
+        .title{
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+
+        .algo-title{
+            font-size: 1.5rem;
+            font-weight: 600;
+            color:white;
+            margin-bottom: 50px;
+        }
+       
+        /*  */
+        .array-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            border-bottom: 1px solid orange;
+            padding-bottom: 1px;
+        }
+
+        /* .bar {
+        flex: 1;
+        max-width: 30px;
+        background-color:brown;
+        } */
+        .bar {
+    flex: 1;
+    max-width: 35px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(to top, #00f260, #0575e6);
+    transition: height 0.3s ease, background 0.3s ease;
+}
+.bar {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+        .array-control-btns{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+        }
+        /* .btn{
+            border: 1px solid lightcyan;
+            border-radius: 10px;
+            padding: 8px 24px;
+            color: white;
+            background: transparent;
+        } */
+         .btn {
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.6);
+}
+
+.bar.compare {
+    background: #ff4e50 !important;
+    box-shadow: 0 0 15px #ff4e50;
+}
+
+.bar.sorted {
+    background: #00ffcc !important;
+    box-shadow: 0 0 15px #00ffcc;
+}
+.custom-array-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+input[type="text"]{
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 8px 24px;
+};
+/* btechkirana.lovable.app */
+
+
+
+       
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- <div class="container">
+        <div class="top-description">
+            <h3 class="algo-title">Bubble Sort Visualizer</h3>
+            <p>Bubble Sort is a simple comparison-based algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.</p>
+            <p>Time Complexity: O(n²) in worst and average cases.</p>
+            <a href="index.html"><button>Back to Home</button></a>
+        </div>
+       
+        <div class="array-container"></div>
+        <div class="control-algo">
+            <div class="array-control-btns">
+                <button class="generate-btn btn" id="gnt-btn">Generate Array</button>
+                <button class="sort-btn btn" id="srt-btn">Start Sorting</button>
+                <button class="speed-ctrl-btn btn" id="spd-btn">Speed Slider</button>
+                <input type="range" id="speed-slider" min="10" max="500" value="200" class="slider">
+            </div>
+        </div>
+    </div> -->
+    <!--  -->
+    <!-- <style>
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+        }
+        .right-wide-container{
+            display: grid;
+            grid-template-rows: 1fr 4fr 1fr;
+        }
+
+    </style> -->
+    <div class="container">
+        <div class="left-small-container">
+            <h3 class="title">Sorting Visualizer</h3>
+            <div class="array-control-btns">
+                <button class="generate-btn btn" id="gnt-btn">Generate Array</button>
+                <button class="sort-btn btn" id="srt-btn">Start Sorting</button>
+                <button class="speed-ctrl-btn btn" id="spd-btn">Speed Slider</button>
+                <input type="range" id="speed-slider" min="10" max="500" value="200" class="slider">
+            </div>
+        </div>
+        <div class="right-wide-container">
+            <div class="top-description">
+                <h3 class="algo-title">Bubble Sort Visualizer</h3>
+                <p>Bubble Sort is a simple comparison-based algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.</p>
+                <p>Time Complexity: O(n²) in worst and average cases.</p>
+                <a href="index.html"><button>Back to Home</button></a>
+            </div>
+            <!--  -->
+            <div class="array-container"></div>
+            <!--  -->
+            <div class="custom-array-container">
+            <input type="text" id="custom-array" placeholder="Enter numbers like 50,20,10">
+            <button id="custom-btn" class="btn">Use Custom Array</button>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+<!--  -->
+<script>
+    const container = document.querySelector(".array-container");
+let unsorted_array = [];
+
+function generateArray() {
+
+    container.innerHTML = "";
+    unsorted_array = []; 
+
+    for (let i = 0; i < 8; i++) {
+
+        const bar = document.createElement("div");
+        const randomHeight = Math.floor(Math.random() * 300) + 20;
+
+        bar.style.height = randomHeight + "px";
+        bar.classList.add("bar");
+
+        container.appendChild(bar);
+        unsorted_array.push(randomHeight);
+    }
+
+    console.log("Generated:", unsorted_array);
+    
+    let divv = document.createElement("div");
+    divv.innerText=unsorted_array;
+    container.appendChild(divv);
+}
+
+
+async function bubbleSort() {
+    const generateBtn = document.getElementById('gnt-btn');
+    const sortBtn = document.getElementById('srt-btn');
+    generateBtn.disabled = true;
+    sortBtn.disabled = true;
+    try{
+
+    let bars = document.querySelectorAll('.bar');
+    let arr = unsorted_array;
+    let n = arr.length;
+
+    for (let i = 0; i < n - 1; i++) {
+        let swapped = false;
+
+        for (let j = 0; j < n - 1 - i; j++) {
+
+            // bars[j].style.backgroundColor = 'red';
+            // bars[j + 1].style.backgroundColor = 'red';
+            bars[j].classList.add("compare");
+            bars[j+1].classList.add("compare");
+
+            await sleep(500);  // Delay to visualize
+
+            if (arr[j] > arr[j + 1]) {
+
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+
+                swapped = true;
+                bars[j].style.height = `${arr[j]}px`;
+                bars[j + 1].style.height = `${arr[j + 1]}px`;
+            }
+            bars[j].style.backgroundColor = '#4CAF50';
+            bars[j + 1].style.backgroundColor = '#4CAF50';
+        }
+        bars[arr.length - i - 1].style.backgroundColor = 'blue';
+
+        if (!swapped) break;
+    }
+     } finally {
+        generateBtn.disabled = false;
+        sortBtn.disabled = false;
+    }
+    
+
+    updateBars(arr); 
+    console.log("Sorted:", arr);
+}
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+
+
+function updateBars(arr) {
+
+    const bars = document.querySelectorAll(".bar");
+
+    for (let i = 0; i < arr.length; i++) {
+        bars[i].style.height = arr[i] + "px";
+    }
+}
+// speed slider last added
+const speedSlider = document.getElementById('speed-slider');
+async function sleep() {
+    return new Promise(resolve => setTimeout(resolve, speedSlider.value));
+}
+
+
+// takes input arrray from user
+
+const customInput = document.getElementById("custom-array");
+const customBtn = document.getElementById("custom-btn");
+
+customBtn.addEventListener("click", function () {
+
+    const values = customInput.value.split(",").map(Number);
+
+    if (values.some(isNaN)) {
+        alert("Please enter valid numbers separated by commas.");
+        return;
+    }
+
+    unsorted_array = values;
+    renderArray();
+});
+
+function renderArray() {
+    container.innerHTML = "";
+
+    unsorted_array.forEach(value => {
+        const bar = document.createElement("div");
+        bar.classList.add("bar");
+        bar.style.height = value + "px";
+        container.appendChild(bar);
+    });
+}
+
+
+
+// Button Events
+document.getElementById("gnt-btn").addEventListener("click", generateArray);
+document.getElementById("srt-btn").addEventListener("click", bubbleSort);
+
+
+</script>
+
+</body>
+</html>
